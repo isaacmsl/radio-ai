@@ -3,6 +3,7 @@ const SONG_ONLY_MODE = true;
 const MILLI_DELAY_BETWEEN_AUDIOS = 2000;
 
 const Audio = require('./Audio');
+const { songs } = require('./audios');
 const Queue = require('./Queue');
 
 const SLOGAN_AUDIO = new Audio('Slogan', INITIAL_AUDIO_SRC);
@@ -20,8 +21,8 @@ class DJ {
     letMeSeeNextAudio() {
         if (this.queue.length == 0) {
             if (SONG_ONLY_MODE) {
-                this.queue.enqueue(new Audio('Gamação', 'song/Gamação.mp3'));
-                this.queue.enqueue(SLOGAN_AUDIO)
+                this.queue.enqueue(songs[Math.floor(Math.random() * songs.length)]);
+                this.queue.enqueue(SLOGAN_AUDIO);
             }
         }
 
