@@ -1,27 +1,37 @@
 const INITIAL_AUDIO_SRC = 'slogan.mp3';
 const SONG_ONLY_MODE = true;
 const MILLI_DELAY_BETWEEN_AUDIOS = 2000;
+const JAMENDO_QUEUE_QNT = 100;
+const JAMENDO_GENRES = ['pop', 'rock', 'eletronic', 'latin', 'house', 'lofi'];
 
-const Audio = require('./Audio');
+const LocalAudio = require('./LocalAudio');
 const { songs } = require('./audios');
 const Queue = require('./Queue');
+const JamendoQueue = require('./JamendoQueue');
 
-const SLOGAN_AUDIO = new Audio('Slogan', INITIAL_AUDIO_SRC);
+const SLOGAN_AUDIO = new LocalAudio('Slogan', INITIAL_AUDIO_SRC);
 
 class DJ {
     constructor(io) {
         this.io = io;
-        this.currentAudio = new Audio('Slogan', INITIAL_AUDIO_SRC);
+        this.currentAudio = SLOGAN_AUDIO;
         this.queue = new Queue();
         this.queue.enqueue(SLOGAN_AUDIO);
-        
+        this.jamendoQueue = new JamendoQueue(JAMENDO_QUEUE_QNT, JAMENDO_GENRES);
+        this.jamendoQueue.pull();
         this.rockIt();
     }
 
     letMeSeeNextAudio() {
         if (this.queue.length == 0) {
             if (SONG_ONLY_MODE) {
-                this.queue.enqueue(songs[Math.floor(Math.random() * songs.length)]);
+                if (!this.jamendoQueue.isEmpty) {
+                    this.queue.enqueue(this.jamendoQueue.dequeue());
+                    this.queue.enqueue(this.jamendoQueue.dequeue());
+                } else {
+                    this.jamendoQueue.pull();
+                    this.queue.enqueue(songs[Math.floor(Math.random() * songs.length)]);
+                }
                 this.queue.enqueue(SLOGAN_AUDIO);
             }
         }

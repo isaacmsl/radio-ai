@@ -1,31 +1,16 @@
-const BASE_SRC = "audio/"
-const FULL_BASE_SRC = "public/" + BASE_SRC;
-
-const { getAudioDurationInSeconds } = require('get-audio-duration')
-
 class Audio {
-    constructor(name, src) {
+    constructor(name, src, durationMilli = 0) {
         this.name = name;
-        this.src = BASE_SRC + src;
-        this.fullSrc = FULL_BASE_SRC + src;   
+        this.src = src;
+        this.durationMilli = durationMilli;
     }
 
     start() {
         this.startTime = Date.now();
     }
     
-    async getDurationMilli() {
-        const seconds = await getAudioDurationInSeconds(this.fullSrc);
-        const milli = seconds * 1000; 
-        return milli;
-    }
-
     getName() {
         return this.name;
-    }
-
-    getFullSrc() {
-        return this.fullSrc;
     }
 
     getSrc() {
@@ -34,6 +19,10 @@ class Audio {
 
     getCurrentAudioTime() {
         return Date.now() - this.startTime;
+    }
+
+    async getDurationMilli() {
+        return this.durationMilli;
     }
 
 }
