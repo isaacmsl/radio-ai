@@ -1,18 +1,19 @@
 const INITIAL_AUDIO_SRC = 'slogan.mp3';
-const SONG_ONLY_MODE = true;
 const MILLI_DELAY_BETWEEN_AUDIOS = 2000;
 const JAMENDO_QUEUE_QNT = 100;
-const JAMENDO_GENRES = ['pop', 'rock', 'eletronic', 'latin', 'house', 'lofi'];
+const JAMENDO_GENRES = ['rock', 'eletronic', 'house', 'lofi'];
 
 const LocalAudio = require('./LocalAudio');
 const { songs } = require('./audios');
 const Queue = require('./Queue');
 const JamendoQueue = require('./JamendoQueue');
+const SpeakerAI = require('./SpeakerAI');
 
 const SLOGAN_AUDIO = new LocalAudio('Slogan', INITIAL_AUDIO_SRC);
 
 class DJ {
     constructor(io) {
+        this.speakerAI = new SpeakerAI(["piadas", "curiosidades", "música"]);
         this.io = io;
         this.currentAudio = SLOGAN_AUDIO;
         this.queue = new Queue();
@@ -22,17 +23,29 @@ class DJ {
         this.rockIt();
     }
 
+    queueJamendos(qnt) {
+        while(qnt--) {
+            if (!this.jamendoQueue.isEmpty) {
+                this.queue.enqueue(this.jamendoQueue.dequeue());
+            } else {
+                return;
+            }
+        }
+    }
+
     letMeSeeNextAudio() {
         if (this.queue.length == 0) {
-            if (SONG_ONLY_MODE) {
-                if (!this.jamendoQueue.isEmpty) {
-                    this.queue.enqueue(this.jamendoQueue.dequeue());
-                    this.queue.enqueue(this.jamendoQueue.dequeue());
-                } else {
-                    this.jamendoQueue.pull();
-                    this.queue.enqueue(songs[Math.floor(Math.random() * songs.length)]);
+            this.queue.enqueue(SLOGAN_AUDIO);
+            this.speakerAI.getAudioRandomTheme().then((audio) => {
+                if (audio) {
+                    this.queue.enqueue(audio);
                 }
-                this.queue.enqueue(SLOGAN_AUDIO);
+            });
+            if (!this.jamendoQueue.isEmpty) {
+                this.queueJamendos(4);
+            } else {
+                this.jamendoQueue.pull();
+                this.queue.enqueue(songs[Math.floor(Math.random() * songs.length)]);
             }
         }
 
