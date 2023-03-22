@@ -9,7 +9,14 @@ class Socket {
         this.dj = new DJ(this.io);
 
         this.io.on('connection', (socket) => {
+            
+            socket.on('disconnect', () => {
+                this.io.emit('Qnt-Clients', this.io.sockets.sockets.size);
+            });
+
             socket.on("Get-Song", () => {
+                this.io.emit('Qnt-Clients', this.io.sockets.sockets.size);
+
                 this.dj.updateSongTo(socket);
             });
         })
