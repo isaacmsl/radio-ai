@@ -1,3 +1,4 @@
+const axios = require('axios');
 const Queue = require('./Queue');
 const RemoteAudio = require('./RemoteAudio');
 
@@ -13,8 +14,8 @@ class JamendoQueue extends Queue {
     }
 
     async pull() {
-        const res = await fetch(this.urlReq);
-        const data = await res.json();
+        const res = await axios.get(this.urlReq);
+        const { data } = res;
 
         data.results.forEach((song) => {
             const remoteAudio = new RemoteAudio(
