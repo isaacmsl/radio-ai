@@ -1,6 +1,11 @@
 const socket = io();
 const audio = document.querySelector('audio');
 const audioName = document.querySelector('#audioName');
+const rangeVolume = document.querySelector('#rangeVolume');
+
+function updateVolume() {
+    audio.volume = rangeVolume.value;
+}
 
 function listen() {
     socket.emit("Get-Song");
