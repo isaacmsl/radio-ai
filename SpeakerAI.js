@@ -24,7 +24,9 @@ class SpeakerAI {
             const gtts = new gTTS(audioScript, 'pt-br');
 
             return new Promise((resolve, reject) => {
-                fs.rmSync(process.env.SPEAKER_FULL_SRC);
+                if (fs.existsSync(process.env.SPEAKER_FULL_SRC)){
+                    fs.rmSync(process.env.SPEAKER_FULL_SRC);
+                }
                 gtts.save(process.env.SPEAKER_FULL_SRC, function (err, result) {
                     if (err) { reject(error); }
                     console.log(`Áudio salvo do programa sobre ${theme}`);
