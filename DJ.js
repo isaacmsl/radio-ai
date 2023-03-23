@@ -9,7 +9,7 @@ const Queue = require('./Queue');
 const JamendoQueue = require('./JamendoQueue');
 const SpeakerAI = require('./SpeakerAI');
 
-const SLOGAN_AUDIO = new LocalAudio('Slogan', INITIAL_AUDIO_SRC);
+const SLOGAN_AUDIO = new LocalAudio('Rádio AI', 'Slogan', INITIAL_AUDIO_SRC);
 
 class DJ {
     constructor(io) {
@@ -54,6 +54,7 @@ class DJ {
 
     updateSongTo(channel) {
         const songInfo = {
+            artist: this.currentAudio.getArtist(),
             name: this.currentAudio.getName(),
             src: this.currentAudio.getSrc(),
             time: this.currentAudio.getCurrentAudioTime()

@@ -1,8 +1,8 @@
 const Audio = require('./Audio');
 
 class RemoteAudio extends Audio {
-    constructor(name, src, durationMilli) {
-        super(name, src);
+    constructor(artist, name, src, durationMilli) {
+        super(artist, name, src);
         this.durationMilli = durationMilli;
     }
 

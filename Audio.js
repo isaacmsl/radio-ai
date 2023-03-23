@@ -1,5 +1,6 @@
 class Audio {
-    constructor(name, src, durationMilli = 0) {
+    constructor(artist, name, src, durationMilli = 0) {
+        this.artist = artist;
         this.name = name;
         this.src = src;
         this.durationMilli = durationMilli;
@@ -7,6 +8,10 @@ class Audio {
 
     start() {
         this.startTime = Date.now();
+    }
+
+    getArtist() {
+        return this.artist;
     }
     
     getName() {

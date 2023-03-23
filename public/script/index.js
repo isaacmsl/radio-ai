@@ -5,7 +5,8 @@ const volumePanel = document.querySelector('#volumePanel');
 const rangeVolume = document.querySelector('#rangeVolume');
 const qntClients = document.querySelector('#qntClients');
 const playBtn = document.querySelector('#playBtn');
-const volumeIcon = document.querySelector('#volumeIcon')
+const volumeIcon = document.querySelector('#volumeIcon');
+const artistName = document.querySelector('#artistName');
 
 audio.volume = 0.5;
 let lastVolume = audio.volume;
@@ -43,6 +44,7 @@ socket.on("Qnt-Clients", (qnt) => {
 });
 
 socket.on("Song-Info", (songInfo) => {
+    songInfo.artist && (artistName.innerHTML = songInfo.artist);
     songInfo.name && (audioName.innerHTML = songInfo.name);
     songInfo.src && (audio.src = songInfo.src);
     songInfo.time && (audio.currentTime = songInfo.time / 1000);

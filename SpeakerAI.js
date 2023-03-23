@@ -30,7 +30,7 @@ class SpeakerAI {
                 gtts.save(process.env.SPEAKER_FULL_SRC, function (err, result) {
                     if (err) { reject(error); }
                     console.log(`Áudio salvo do programa sobre ${theme}`);
-                    resolve(new LocalAudio(`Programa sobre ${theme}`, process.env.SPEAKER_FILENAME));
+                    resolve(new LocalAudio('Inteligência artificial', `Programa sobre ${theme}`, process.env.SPEAKER_FILENAME));
                 });
             })
         }

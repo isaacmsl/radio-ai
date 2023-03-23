@@ -5,8 +5,8 @@ const { getAudioDurationInSeconds } = require('get-audio-duration');
 const Audio = require('./Audio');
 
 class LocalAudio extends Audio {
-    constructor(name, src) {
-        super(name, BASE_SRC + src, 0);
+    constructor(artist, name, src) {
+        super(artist, name, BASE_SRC + src, 0);
         this.fullSrc = FULL_BASE_SRC + src;   
     }
 

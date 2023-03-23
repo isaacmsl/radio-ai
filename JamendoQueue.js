@@ -19,6 +19,7 @@ class JamendoQueue extends Queue {
 
         data.results.forEach((song) => {
             const remoteAudio = new RemoteAudio(
+                song.artist_name,
                 song.name,
                 song.audio,
                 song.duration * 1000
