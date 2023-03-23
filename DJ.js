@@ -69,7 +69,7 @@ class DJ {
                 }
             });
             if (!this.jamendoQueue.isEmpty) {
-                this.queueJamendos(4);
+                this.queueJamendos(3);
             } else {
                 this.jamendoQueue.pull();
                 this.queue.enqueue(songs[Math.floor(Math.random() * songs.length)]);
