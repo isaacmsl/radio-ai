@@ -53,9 +53,12 @@ class DJ {
     }
 
     updateSongTo(channel) {
-        channel.emit("Song-Name", this.currentAudio.getName());
-        channel.emit("Song-Src", this.currentAudio.getSrc());
-        channel.emit("Song-Time", this.currentAudio.getCurrentAudioTime());
+        const songInfo = {
+            name: this.currentAudio.getName(),
+            src: this.currentAudio.getSrc(),
+            time: this.currentAudio.getCurrentAudioTime()
+        };
+        channel.emit("Song-Info", songInfo);
     }
 
     updateGuys() {
