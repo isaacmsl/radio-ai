@@ -8,6 +8,7 @@ const { songs } = require('./audios');
 const Queue = require('./Queue');
 const JamendoQueue = require('./JamendoQueue');
 const SpeakerAI = require('./SpeakerAI');
+const RemoteAudio = require('./RemoteAudio');
 
 const SLOGAN_AUDIO = new LocalAudio('Rádio AI', 'Slogan', INITIAL_AUDIO_SRC);
 
@@ -57,6 +58,7 @@ class DJ {
             artist: this.currentAudio.getArtist(),
             name: this.currentAudio.getName(),
             src: this.currentAudio.getSrc(),
+            albumUrl: (this.currentAudio instanceof RemoteAudio) ? this.currentAudio.getAlbumUrl() : undefined,
             time: this.currentAudio.getCurrentAudioTime()
         };
         channel.emit("Song-Info", songInfo);

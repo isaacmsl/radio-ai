@@ -7,6 +7,7 @@ const qntClients = document.querySelector('#qntClients');
 const playBtn = document.querySelector('#playBtn');
 const volumeIcon = document.querySelector('#volumeIcon');
 const artistName = document.querySelector('#artistName');
+const album = document.querySelector('#album');
 
 audio.volume = 0.5;
 let lastVolume = audio.volume;
@@ -44,6 +45,11 @@ socket.on("Qnt-Clients", (qnt) => {
 });
 
 socket.on("Song-Info", (songInfo) => {
+    if (songInfo.albumUrl) {
+        album.src = songInfo.albumUrl;
+    } else {
+        album.src = "default.jpg";
+    }
     songInfo.artist && (artistName.innerHTML = songInfo.artist);
     songInfo.name && (audioName.innerHTML = songInfo.name);
     songInfo.src && (audio.src = songInfo.src);
