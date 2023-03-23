@@ -19,7 +19,7 @@ class SpeakerAI {
     async getAudioRandomTheme() {
         const theme = this.themes[Math.floor(Math.random() * this.themes.length)];
         try {
-            const audioScript = await this.getCompletion(`Você é radialista na Rádio AI. Fala um pouco sobre você ser uma inteligência artificial. Faça um programa curto de ${theme}.`);
+            const audioScript = await this.getCompletion(`Você é inteligência artificial radialista na Rádio AI. Faça uma breve introdução. Faça um programa rápido de "${theme}".`);
 
             const gtts = new gTTS(audioScript, 'pt-br');
 

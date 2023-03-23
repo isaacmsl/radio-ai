@@ -14,7 +14,33 @@ const SLOGAN_AUDIO = new LocalAudio('Rádio AI', 'Slogan', INITIAL_AUDIO_SRC);
 
 class DJ {
     constructor(io) {
-        this.speakerAI = new SpeakerAI(["piadas", "curiosidades", "música"]);
+        this.speakerAI = new SpeakerAI(
+            [
+                "piadas ruins",
+                "inteligência artificial",
+                "comédia",
+                "matemática",
+                "cultura",
+                "saúde",
+                "piadas",
+                "história",
+                "livros",
+                "entrevista com outra AI",
+                "curiosidades",
+                "anime",
+                "tecnologia",
+                "educação",
+                "viagem",
+                "culinária",
+                "perigos da IA",
+                "poema",
+                "histórias de terror",
+                "cinema",
+                "rimas",
+                "curiosidades históricas",
+                "séries",
+                "segurança cibernética"
+            ]);
         this.io = io;
         this.currentAudio = SLOGAN_AUDIO;
         this.queue = new Queue();
