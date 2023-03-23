@@ -2,27 +2,33 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
     <title>Rádio AI - 24/7</title>
+    <link rel="stylesheet" href="style/index.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-    <header>
-        <h1>Inteligência para o seu ouvido.</h1>
-        <p>Tocando agora: <span id="audioName"></span></p>
-        <p>Ouvintes: <span id="qntClients"></span></p>
-    </header>
+    <div id="clientsInfo">
+        <img src="headphones.svg">
+        <span id="qntClients">0</span>
+    </div>
+    <main>
+        <section>
+            <img width="200px" src="default.jpg" alt="Álbum da música">
+            <h1 id="audioName">Rádio AI</h1>
+            <h2 id="artistName">Inteligência para seu ouvido</h4>
+        </section>
+        <button id="playBtn" onclick="listen()">Ouvir agora!</button>
+        <div id="volumePanel">
+            <button onclick="toggleMute()">
+                <img id="volumeIcon" src="volume-1.svg">
+            </button>
+            <input id="rangeVolume" type="range" min="0" max="1" value="0.5" onpointermove="updateVolume()"
+                step="0.05"></input>
+        </div>
+    </main>
     <audio></audio>
-    <button onclick="listen()">Ouvir agora!</button>
-    <input
-        id="rangeVolume"
-        type="range"
-        min="0"
-        max="1"
-        value="1"
-        onpointermove="updateVolume()"
-        step="0.05"
-    ></input>
     <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"></script>
     <script src="script/index.js" defer></script>
 </body>
