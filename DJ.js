@@ -1,7 +1,7 @@
 const INITIAL_AUDIO_SRC = 'slogan.mp3';
 const MILLI_DELAY_BETWEEN_AUDIOS = 2000;
 const JAMENDO_QUEUE_QNT = 100;
-const JAMENDO_GENRES = ['metal', 'eletronic', 'rock', 'lofi'];
+const JAMENDO_GENRES = ['eletronic', 'rock', 'latin', 'guitar', 'indie', 'metal', 'lofi', 'chillout'];
 
 const LocalAudio = require('./LocalAudio');
 const { songs } = require('./audios');
@@ -25,7 +25,7 @@ class DJ {
     }
 
     queueJamendos(qnt) {
-        while(qnt--) {
+        while (qnt--) {
             if (!this.jamendoQueue.isEmpty) {
                 this.queue.enqueue(this.jamendoQueue.dequeue());
             } else {
