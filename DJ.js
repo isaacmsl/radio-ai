@@ -1,7 +1,7 @@
 const INITIAL_AUDIO_SRC = 'slogan.mp3';
 const MILLI_DELAY_BETWEEN_AUDIOS = 2000;
 const JAMENDO_QUEUE_QNT = 100;
-const JAMENDO_GENRES = ['rock', 'eletronic', 'house', 'lofi'];
+const JAMENDO_GENRES = ['metal', 'eletronic', 'rock', 'lofi'];
 
 const LocalAudio = require('./LocalAudio');
 const { songs } = require('./audios');
