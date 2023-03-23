@@ -23,6 +23,7 @@ class JamendoQueue extends Queue {
                 song.name,
                 song.audio,
                 song.album_image,
+                song.shareurl,
                 song.duration * 1000
             );
             

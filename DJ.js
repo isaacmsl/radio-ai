@@ -59,6 +59,7 @@ class DJ {
             name: this.currentAudio.getName(),
             src: this.currentAudio.getSrc(),
             albumUrl: (this.currentAudio instanceof RemoteAudio) ? this.currentAudio.getAlbumUrl() : undefined,
+            shareUrl: (this.currentAudio instanceof RemoteAudio) ? this.currentAudio.getShareUrl() : undefined,
             time: this.currentAudio.getCurrentAudioTime()
         };
         channel.emit("Song-Info", songInfo);

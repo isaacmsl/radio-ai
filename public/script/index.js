@@ -8,6 +8,7 @@ const playBtn = document.querySelector('#playBtn');
 const volumeIcon = document.querySelector('#volumeIcon');
 const artistName = document.querySelector('#artistName');
 const album = document.querySelector('#album');
+const audioShareUrl = document.querySelector('#audioShareUrl');
 
 audio.volume = 0.5;
 let lastVolume = audio.volume;
@@ -50,6 +51,13 @@ socket.on("Song-Info", (songInfo) => {
     } else {
         album.src = "default.jpg";
     }
+
+    if (songInfo.shareUrl) {
+        audioShareUrl.href = songInfo.shareUrl;
+    } else {
+        audioShareUrl.removeAttribute('href');
+    }
+
     songInfo.artist && (artistName.innerHTML = songInfo.artist);
     songInfo.name && (audioName.innerHTML = songInfo.name);
     songInfo.src && (audio.src = songInfo.src);

@@ -41,6 +41,11 @@ main {
     text-align: center;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
 #clientsInfo {
     position: fixed;
     top: 1rem;
