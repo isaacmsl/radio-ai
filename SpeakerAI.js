@@ -1,15 +1,11 @@
-const { Configuration, OpenAIApi } = require("openai");
+const OpenAI = require('openai');
 const LocalAudio = require('./LocalAudio');
 const gTTS = require('gtts');
 const fs = require('fs');
 
 require('dotenv').config();
 
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-});
-
-const openai = new OpenAIApi(configuration);
+const openai = new OpenAI();
 
 class SpeakerAI {
     constructor(themes) {
@@ -24,7 +20,7 @@ class SpeakerAI {
             const gtts = new gTTS(audioScript, 'pt-br');
 
             return new Promise((resolve, reject) => {
-                if (fs.existsSync(process.env.SPEAKER_FULL_SRC)){
+                if (fs.existsSync(process.env.SPEAKER_FULL_SRC)) {
                     fs.rmSync(process.env.SPEAKER_FULL_SRC);
                 }
                 gtts.save(process.env.SPEAKER_FULL_SRC, function (err, result) {
@@ -40,17 +36,12 @@ class SpeakerAI {
     }
 
     async getCompletion(prompt) {
-        const response = await openai.createCompletion({
+        const chatCompletion = await openai.chat.completions.create({
+            messages: [{ role: 'user', content: prompt }],
             model: process.env.OPENAI_DJ_MODEL,
-            prompt,
-            temperature: 0.7,
-            max_tokens: 500,
-            top_p: 1,
-            frequency_penalty: 0,
-            presence_penalty: 0,
         });
 
-        return response.data.choices[0].text;
+        return chatCompletion;
     }
 }
 
