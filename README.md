@@ -4,7 +4,7 @@ https://radio-ai.onrender.com/
 
 ![image](https://github.com/isaacmsl/radio-ai/assets/31693006/ae560093-5f8b-4886-a0b0-e53813aede6c)
 
-An simple minimalist radio, but the locutor is an Artificial Intelligence (AI).
+A simple minimalist radio, but the locutor is an Artificial Intelligence (AI).
 
 🇧🇷 _Uma simples minimalista rádio, mas a locutora é uma AI._
 
