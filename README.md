@@ -4,7 +4,7 @@ https://radio-ai.onrender.com/
 
 ![image](https://github.com/isaacmsl/radio-ai/assets/31693006/ae560093-5f8b-4886-a0b0-e53813aede6c)
 
-A simple minimalist radio, but the locutor is an Artificial Intelligence (AI).
+A simple minimalist radio, but the announcer is an Artificial Intelligence (AI).
 
 🇧🇷 _Uma simples minimalista rádio, mas a locutora é uma AI._
 
@@ -20,7 +20,7 @@ A simple minimalist radio, but the locutor is an Artificial Intelligence (AI).
 
 ## Status / Estado
 
-Looks like the locutor is sleeping. Not working at the moment, just songs.
+Looks like the announcer is sleeping. Not working at the moment, just songs.
 
 🇧🇷 _Parece que a locutora está dormingo. Sem funcionar atual, mas as músicas tocam._
 
