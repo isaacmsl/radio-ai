@@ -41,7 +41,7 @@ class SpeakerAI {
             model: process.env.OPENAI_DJ_MODEL,
         });
 
-        return chatCompletion;
+        return chatCompletion.choices[0].message.content;
     }
 }
 
