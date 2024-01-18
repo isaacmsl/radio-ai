@@ -10,7 +10,7 @@ A simple minimalist radio, but the announcer is an Artificial Intelligence (AI).
 
 ## Tools / Ferramentas
 
-- OpenAI API Text Model, to generate crazy radio programs :P
+- [OpenAI API](https://platform.openai.com/) Text Model, to generate crazy radio programs :P
   
   🇧🇷 _OpenAI API Modelo de texto, para gerar os programas de rádio mais malucos._
 
