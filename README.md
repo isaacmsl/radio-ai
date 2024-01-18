@@ -1,5 +1,7 @@
 # Radio AI
 
+https://radio-ai.onrender.com/
+
 ![image](https://github.com/isaacmsl/radio-ai/assets/31693006/ae560093-5f8b-4886-a0b0-e53813aede6c)
 
 An simple minimalist radio, but the locutor is an Artificial Intelligence (AI).
@@ -15,6 +17,12 @@ An simple minimalist radio, but the locutor is an Artificial Intelligence (AI).
 - [Jamendo API](https://developer.jamendo.com/v3.0), to get the best free use songs! 🎧🎵
   
   🇧🇷 _Jamendo API, para obter as melhores músicas de uso gratuito._
+
+## Status / Estado
+
+Looks like the locutor is sleeping. Not working at the moment, just songs.
+
+🇧🇷 _Parece que a locutora está dormingo. Sem funcionar atual, mas as músicas tocam._
 
 ## Contribute / Contribua
 
