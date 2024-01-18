@@ -24,6 +24,12 @@ Looks like the announcer is sleeping. Not working at the moment, just songs.
 
 🇧🇷 _Parece que a locutora está dormingo. Sem funcionar atual, mas as músicas tocam._
 
+## How to run / Como rodar
+
+1. Fill your `.env` file (🇧🇷 Preencha seu arquivo `.env`)
+1. `$ npm install`
+1. `$ node .`
+
 ## Contribute / Contribua
 
 Look at something cool to contribute. I don't know, feel free.
