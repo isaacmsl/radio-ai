@@ -1,6 +1,5 @@
 const OpenAI = require('openai');
 const LocalAudio = require('./LocalAudio');
-const gTTS = require('gtts');
 const fs = require('fs');
 
 require('dotenv').config();
@@ -8,31 +7,34 @@ require('dotenv').config();
 const openai = new OpenAI();
 
 class SpeakerAI {
-    constructor(themes) {
+    constructor(themes, voices) {
         this.themes = themes;
+        this.voices = voices;
     }
 
-    async getAudioRandomTheme() {
+    async getAudioOpenAIRandomTheme() {
         const theme = this.themes[Math.floor(Math.random() * this.themes.length)];
+        const voice = this.voices[Math.floor(Math.random() * this.voices.length)];
         try {
-            const audioScript = await this.getCompletion(`Você é inteligência artificial radialista na Rádio AI. Faça uma breve introdução. Faça um programa rápido de "${theme}".`);
-
-            const gtts = new gTTS(audioScript, 'pt-br');
-
-            return new Promise((resolve, reject) => {
-                if (fs.existsSync(process.env.SPEAKER_FULL_SRC)) {
-                    fs.rmSync(process.env.SPEAKER_FULL_SRC);
-                }
-                gtts.save(process.env.SPEAKER_FULL_SRC, function (err, result) {
-                    if (err) { reject(error); }
-                    console.log(`Áudio salvo do programa sobre ${theme}`);
-                    resolve(new LocalAudio('Inteligência artificial', `Programa sobre ${theme}`, process.env.SPEAKER_FILENAME));
-                });
-            })
+            const audioScript = await this.getCompletion(`Você é ${voice}, uma inteligência artificial radialista na Rádio AI. Faça uma breve introdução. Faça um programa rápido de "${theme}".`);
+            const bufferMp3FromText = await this.getBufferMp3FromTextWithVoice(audioScript, voice);
+            await fs.promises.writeFile(process.env.SPEAKER_FULL_SRC, bufferMp3FromText);
+            console.log(`Áudio salvo do programa sobre ${theme}`);
+            return new LocalAudio('Inteligência artificial', `Programa sobre ${theme}`, process.env.SPEAKER_FILENAME);
         }
         catch (error) {
             console.error(`Erro no SpeakerAI: ${error.message}`);
         }
+    }
+
+    async getBufferMp3FromTextWithVoice(text, voice) {
+        const mp3 = await openai.audio.speech.create({
+            model: "tts-1",
+            voice,
+            input: text,
+        });
+        const buffer = Buffer.from(await mp3.arrayBuffer());
+        return buffer;
     }
 
     async getCompletion(prompt) {

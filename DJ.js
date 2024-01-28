@@ -12,35 +12,46 @@ const RemoteAudio = require('./RemoteAudio');
 
 const SLOGAN_AUDIO = new LocalAudio('Rádio AI', 'Slogan', INITIAL_AUDIO_SRC);
 
+const themes = [
+    "piadas ruins",
+    "inteligência artificial",
+    "comédia",
+    "matemática",
+    "cultura",
+    "saúde",
+    "piadas",
+    "história",
+    "livros",
+    "entrevista com outra AI",
+    "curiosidades",
+    "anime",
+    "tecnologia",
+    "educação",
+    "viagem",
+    "culinária",
+    "perigos da IA",
+    "poema",
+    "histórias de terror",
+    "cinema",
+    "rimas",
+    "curiosidades históricas",
+    "séries",
+    "segurança cibernética"
+];
+
+const voices = [
+    'alloy',
+    'echo',
+    'fable',
+    'onyx',
+    'nova',
+    'shimmer'
+];
+
+
 class DJ {
     constructor(io) {
-        this.speakerAI = new SpeakerAI(
-            [
-                "piadas ruins",
-                "inteligência artificial",
-                "comédia",
-                "matemática",
-                "cultura",
-                "saúde",
-                "piadas",
-                "história",
-                "livros",
-                "entrevista com outra AI",
-                "curiosidades",
-                "anime",
-                "tecnologia",
-                "educação",
-                "viagem",
-                "culinária",
-                "perigos da IA",
-                "poema",
-                "histórias de terror",
-                "cinema",
-                "rimas",
-                "curiosidades históricas",
-                "séries",
-                "segurança cibernética"
-            ]);
+        this.speakerAI = new SpeakerAI(themes, voices);
         this.io = io;
         this.currentAudio = SLOGAN_AUDIO;
         this.queue = new Queue();
@@ -63,7 +74,7 @@ class DJ {
     letMeSeeNextAudio() {
         if (this.queue.length == 0) {
             this.queue.enqueue(SLOGAN_AUDIO);
-            this.speakerAI.getAudioRandomTheme().then((audio) => {
+            this.speakerAI.getAudioOpenAIRandomTheme().then((audio) => {
                 if (audio) {
                     this.queue.enqueue(audio);
                 }
